@@ -40,9 +40,6 @@ int main(int argc, char *argv[]) {
     if (args)
         free(args);
 
-    printf("Press ENTER to inject.\n");
-    (void)getchar();
-
     LPVOID alloc = VirtualAllocEx(pi.hProcess, NULL, strlen(argv[1]), MEM_RESERVE | MEM_COMMIT, PAGE_EXECUTE_READWRITE);
     if (!alloc) {
         printf("VirtualAllocEx failed.\n");
