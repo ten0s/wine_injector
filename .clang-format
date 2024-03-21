@@ -1,7 +1,0 @@
-BasedOnStyle: LLVM
-FixNamespaceComments: false
-IndentWidth: 4
-ColumnLimit: 0
-NamespaceIndentation: All
-IndentCaseLabels: true
-SortIncludes: Never

@@ -4,32 +4,14 @@
 1. build the project first (see building)
 2. run it:
     ```
-    WINEDEBUG=-all wine wine_injector.exe <dll> <exe> <optional args for exe>
+    WINEDEBUG=-all wine wine_injector.exe <path/to/dll> <path/to/exe> <optional args for exe>
     ```
 3. wait for the process to fully load and then press enter in the terminal
 
 ## building
-1. clone the repo
-    ```
-    git clone https://github.com/crwn1337/wine_injector
-    ```
-2. cd into the directory
-    ```
-    cd wine_injector
-    ```
-3. make directory 'bin'
-    ```
-    mkdir bin
-    ```
-4. cd into 'bin'
-    ```
-    cd bin
-    ```
-5. generate cmake project
-    ```
-    cmake -DCMAKE_BUILD_TYPE=Release ..
-    ```
-6. build cmake project
-    ```
-    cmake --build .
-    ```
+
+```
+$ git clone https://github.com/ten0s/wine_injector
+$ cd wine_injector
+$ make
+```
