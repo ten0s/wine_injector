@@ -33,7 +33,7 @@ int main(int argc, char *argv[]) {
     // printf("args: %s\n", args);
 
     if (CreateProcessA(argv[2], args, NULL, NULL, FALSE, 0, NULL, NULL, &si, &pi) == 0) {
-        printf("CreateProcessA failed.\n");
+        printf("CreateProcessA error: 0x%08x\n", GetLastError());
         return EXIT_FAILURE;
     }
 
@@ -42,18 +42,18 @@ int main(int argc, char *argv[]) {
 
     LPVOID alloc = VirtualAllocEx(pi.hProcess, NULL, strlen(argv[1]), MEM_RESERVE | MEM_COMMIT, PAGE_EXECUTE_READWRITE);
     if (!alloc) {
-        printf("VirtualAllocEx failed.\n");
+        printf("VirtualAllocEx error: 0x%08x\n", GetLastError());
         return EXIT_FAILURE;
     }
 
     if (WriteProcessMemory(pi.hProcess, alloc, argv[1], strlen(argv[1]), NULL) == 0) {
-        printf("WriteProcessMemory failed.\n");
+        printf("WriteProcessMemory error: 0x%08x\n", GetLastError());
         return EXIT_FAILURE;
     }
 
     HANDLE handle = CreateRemoteThread(pi.hProcess, NULL, 0, (LPTHREAD_START_ROUTINE)LoadLibraryA, alloc, 0, NULL);
     if (!handle) {
-        printf("CreateRemoteThread failed.\n");
+        printf("CreateRemoteThread error: 0x%08x\n", GetLastError());
         return EXIT_FAILURE;
     }
 
